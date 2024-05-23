@@ -31,8 +31,16 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        preferences = getSharedPreferences("preferencesStart", MODE_PRIVATE);
+        boolean checkStart = preferences.getBoolean("checkStart", false);
+
         preferences = getSharedPreferences("preferencesLogin", MODE_PRIVATE);
         boolean checkLogin = preferences.getBoolean("checkLogin", false);
+
+        if (!checkStart){
+            Intent toStart = new Intent(MainActivity.this, GetStartedActivity.class);
+            startActivity(toStart);
+        }
 
         if (!checkLogin){
             Intent toLogin = new Intent(MainActivity.this, LoginActivity.class);
