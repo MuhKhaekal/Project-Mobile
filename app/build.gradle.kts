@@ -33,6 +33,7 @@ android {
 
 dependencies {
 
+    implementation("com.etebarian:meow-bottom-navigation:1.2.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
