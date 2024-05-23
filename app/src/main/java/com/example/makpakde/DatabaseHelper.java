@@ -2,6 +2,7 @@ package com.example.makpakde;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "my_database";
     public static final int DATABASE_VERSION = 1;
-    public static final String TABLE_USER = "user";
+    public static final String TABLE_USER = "users";
     public static final String USER_COLUMN_ID = "id";
     public static final String USER_COLUMN_FULLNAME = "fullname";
     public static final String USER_COLUMN_USERNAME = "username";
@@ -32,14 +33,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertDataUser(String username, String password){
+    public void insertDataUser(String fullname,String username, String password){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(USER_COLUMN_FULLNAME, fullname);
         values.put(USER_COLUMN_USERNAME, username);
         values.put(USER_COLUMN_PASSWORD, password);
 
         db.insert(TABLE_USER, null, values);
+    }
+
+    public Boolean checkUsername(String username){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? ", new String[]{username});
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Boolean checkUsernamePassword(String username, String password){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ? ", new String[]{username, password});
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void updateRecordUserFullname(int id, String fullname){
