@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_loginregister"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="60sp"
+            android:fontFamily="@font/poppins_semibold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/bg_et"
+            app:startIconTint="@color/edit_text_stroke_color"
+            app:hintTextColor="@color/edit_text_stroke_color"
+            app:endIconTint="@color/edit_text_stroke_color"
+            app:boxStrokeColor="@color/edit_text_stroke_color"
+            android:layout_marginBottom="20dp"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/baseline_person_24">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:textColor="@color/white"
+                android:textColorHint="@color/edit_text_hint_color"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/bg_et"
+            app:startIconTint="@color/edit_text_stroke_color"
+            app:endIconTint="@color/edit_text_stroke_color"
+            app:hintTextColor="@color/edit_text_stroke_color"
+            app:boxStrokeColor="@color/edit_text_stroke_color"
+            android:layout_marginBottom="20dp"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/baseline_lock_24">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:textColorHint="@color/edit_text_hint_color"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/primaryColor"
+            android:text="Login"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="20sp"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="12dp"
+            android:drawableRight="@drawable/baseline_arrow_forward_24"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Didn't have account? "/>
+
+            <TextView
+                android:id="@+id/login_tv_toSignin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textStyle=""
+                android:textColor="@color/primaryColor"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Sign In" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

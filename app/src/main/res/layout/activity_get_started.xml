@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GetStartedActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_getstarted"
+        android:scaleType="centerCrop"/>
+
+    <Button
+        android:id="@+id/getStarted_btn_getStarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/primaryColor"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingHorizontal="50sp"
+        android:paddingVertical="10dp"
+        android:drawableRight="@drawable/baseline_arrow_forward_24"/>
+
+</RelativeLayout>
