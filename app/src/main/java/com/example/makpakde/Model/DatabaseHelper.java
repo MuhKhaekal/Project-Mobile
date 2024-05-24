@@ -1,4 +1,4 @@
-package com.example.makpakde;
+package com.example.makpakde.Model;
 
 import android.content.ContentValues;
 import android.content.Context;
