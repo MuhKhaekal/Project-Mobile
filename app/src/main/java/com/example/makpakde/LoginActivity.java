@@ -40,6 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         login_btn_login = findViewById(R.id.login_btn_login);
         login_tv_toSignin = findViewById(R.id.login_tv_toSignin);
 
+        SharedPreferences preferences = getSharedPreferences("preferencesStart", MODE_PRIVATE);
+        boolean checkStart = preferences.getBoolean("checkStart", false);
+
+        if (!checkStart){
+            Intent toStart = new Intent(LoginActivity.this, GetStartedActivity.class);
+            startActivity(toStart);
+        }
+
         login_btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
