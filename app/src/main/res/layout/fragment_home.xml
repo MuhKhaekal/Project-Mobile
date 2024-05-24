@@ -25,6 +25,7 @@
         android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fh_rv_tr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -224,6 +225,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_recentrecipe"/>
+        tools:listitem="@layout/list_item_recentrecipe"
+        android:layout_marginBottom="100dp"/>
 
 </LinearLayout>

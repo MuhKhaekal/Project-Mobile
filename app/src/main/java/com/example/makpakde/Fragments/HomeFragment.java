@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.makpakde.Adapter.IngredientTypeAdapter;
+import com.example.makpakde.Adapter.TopRecommendationAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
 import com.example.makpakde.EdamamAPI.Recipe;
 import com.example.makpakde.EdamamAPI.RecipeResponse;
@@ -23,6 +24,7 @@ import com.example.makpakde.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +35,10 @@ public class HomeFragment extends Fragment {
     private static final String APP_ID = "f22371a7";
     private static final String APP_KEY = "06294766abfa75c4602e3bd8c2b35875";
     RecyclerView fh_rv_it;
+    RecyclerView fh_rv_tr;
     IngredientTypeAdapter ingredientTypeAdapter;
+    TopRecommendationAdapter topRecommendationAdapter;
+    private List<Recipe> recommendationList = new ArrayList<>();
     private List<Recipe> ingredientList = new ArrayList<>();
     protected Button fh_btn_chicken;
     Button fh_btn_beef;
@@ -57,13 +62,11 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        fh_rv_tr = view.findViewById(R.id.fh_rv_tr);
         fh_rv_it = view.findViewById(R.id.fh_rv_it);
 
         fh_btn_chicken = view.findViewById(R.id.fh_btn_chicken);
@@ -98,26 +101,41 @@ public class HomeFragment extends Fragment {
         fh_btn_bread.setTag("bread");
         fh_btn_octopus.setTag("octopus");
 
-        fh_btn_chicken.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.primaryColor));
+
+        List<String> keyRandom = new ArrayList<>();
+        keyRandom.add("savory");
+        keyRandom.add("spicy");
+        keyRandom.add("oil");
+        keyRandom.add("fried");
+        keyRandom.add("roast");
+        keyRandom.add("sweet");
+        keyRandom.add("almond");
+        keyRandom.add("steam");
+        keyRandom.add("burn");
+        keyRandom.add("boil");
+        Random random = new Random();
+        int randomIndex = random.nextInt(keyRandom.size());
+        String randomKeyword = keyRandom.get(randomIndex);
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<RecipeResponse> call = apiService.getRecipes("public", "chicken", APP_ID, APP_KEY);
+        Call<RecipeResponse> call = apiService.getRecipes("public", "boil", APP_ID, APP_KEY);
         call.enqueue(new Callback<RecipeResponse>() {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
                 if (response.isSuccessful()){
-                    ingredientList.clear();
+                    recommendationList.clear();
                     List<RecipeResponse.Hit> hits = response.body().getHits();
                     for (RecipeResponse.Hit hit : hits){
-                        ingredientList.add(hit.getRecipe());
+                        recommendationList.add(hit.getRecipe());
                     }
-                    ingredientTypeAdapter = new IngredientTypeAdapter(ingredientList);
-                    fh_rv_it.setAdapter(ingredientTypeAdapter);
-                    ingredientTypeAdapter.notifyDataSetChanged();
+                    topRecommendationAdapter = new TopRecommendationAdapter(recommendationList);
+                    fh_rv_tr.setAdapter(topRecommendationAdapter);
+                    topRecommendationAdapter.notifyDataSetChanged();
+
+                    Log.d("Response", "Data successfully fetched from API. Number of hits: " + hits.size());
                 } else {
                     Log.e("Response", "Failed to fetch data. Code: " + response.code());
                 }
             }
-
             @Override
             public void onFailure(Call<RecipeResponse> call, Throwable t) {
                 Log.e("Response", "Failed to fetch data. Error: " + t.getMessage());
@@ -125,6 +143,8 @@ public class HomeFragment extends Fragment {
         });
 
 
+
+        loadIngredientType("chicken");
         View.OnClickListener buttonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {

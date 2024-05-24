@@ -15,22 +15,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAdapter.ViewHolder> {
+public class TopRecommendationAdapter extends RecyclerView.Adapter<TopRecommendationAdapter.ViewHolder> {
     public List<Recipe> recipeList;
 
-    public IngredientTypeAdapter(List<Recipe> recipeList) {
+    public TopRecommendationAdapter(List<Recipe> recipeList) {
         this.recipeList = recipeList;
     }
 
     @NonNull
     @Override
-    public IngredientTypeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_ingredienttype, parent, false);
+    public TopRecommendationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_toprecommendation, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientTypeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TopRecommendationAdapter.ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.setData(recipe);
 
@@ -42,29 +42,25 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView li_it_iv_image;
-        TextView li_it_tv_label;
-        TextView li_it_tv_dietLabels;
-        TextView li_it_tv_cuisineType;
+        ImageView li_tr_iv_image;
+        TextView li_tr_tv_label;
+        TextView li_tr_tv_totalTime;
+        TextView li_tr_tv_mealType;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            li_it_iv_image = itemView.findViewById(R.id.li_it_iv_image);
-            li_it_tv_label = itemView.findViewById(R.id.li_it_tv_label);
-            li_it_tv_dietLabels = itemView.findViewById(R.id.li_it_tv_dietLabels);
-            li_it_tv_cuisineType = itemView.findViewById(R.id.li_it_tv_cuisineType);
+            li_tr_iv_image = itemView.findViewById(R.id.li_tr_iv_image);
+            li_tr_tv_label = itemView.findViewById(R.id.li_tr_tv_label);
+            li_tr_tv_totalTime = itemView.findViewById(R.id.li_tr_tv_totalTime);
+            li_tr_tv_mealType = itemView.findViewById(R.id.li_tr_tv_mealType);
         }
 
         public void setData(Recipe recipe) {
-            List<String> dietLabels = recipe.getDietLabels();
-            List<String> cuisineType = recipe.getCuisineType();
+            String formatTolalTime = String.format("%.0f",recipe.getTotalTime());
 
-
-            Picasso.get().load(recipe.getImage()).into(li_it_iv_image);
-            li_it_tv_label.setText(recipe.getLabel());
-            li_it_tv_dietLabels.setText(formatListToString(dietLabels));
-            li_it_tv_cuisineType.setText(formatListToString(cuisineType));
-
-
+            Picasso.get().load(recipe.getImage()).into(li_tr_iv_image);
+            li_tr_tv_label.setText(recipe.getLabel());
+            li_tr_tv_totalTime.setText(formatTolalTime + " Minute");
+            li_tr_tv_mealType.setText(formatListToString(recipe.getMealType()));
         }
         private String formatListToString(List<String> list) {
             if (list == null || list.isEmpty()) {
@@ -79,6 +75,5 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
             }
             return formattedString.toString();
         }
-
     }
 }
