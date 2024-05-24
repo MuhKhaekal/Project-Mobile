@@ -2,26 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottomNavigation"
+        tools:ignore="ScrollViewCount">
+
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/frame_layout">
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:paddingBottom="50dp"
         android:id="@+id/main_bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="50dp"
         app:mbn_circleColor="@color/primaryColor"
         app:mbn_backgroundBottomColor="@color/primaryColor"
         app:mbn_countBackgroundColor="#ff6f00"
@@ -29,7 +41,6 @@
         app:mbn_defaultIconColor="#80ffffff"
         app:mbn_rippleColor="#2f424242"
         app:mbn_selectedIconColor="@color/white"
-        app:mbn_shadowColor="#1f212121"
-        android:layout_alignParentBottom="true"/>
+        app:mbn_shadowColor="#1f212121" />
 
 </RelativeLayout>
