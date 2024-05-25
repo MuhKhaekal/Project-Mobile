@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment {
     TopRecommendationAdapter topRecommendationAdapter;
     private List<Recipe> recommendationList = new ArrayList<>();
     private List<Recipe> ingredientList = new ArrayList<>();
+
     protected Button fh_btn_chicken;
     Button fh_btn_beef;
     Button fh_btn_fish;
@@ -116,8 +117,8 @@ public class HomeFragment extends Fragment {
         Random random = new Random();
         int randomIndex = random.nextInt(keyRandom.size());
         String randomKeyword = keyRandom.get(randomIndex);
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        Call<RecipeResponse> call = apiService.getRecipes("public", "boil", APP_ID, APP_KEY);
+        ApiService apiService = RetrofitClient.getClient();
+        Call<RecipeResponse> call = apiService.getRecipes("public", randomKeyword, APP_ID, APP_KEY);
         call.enqueue(new Callback<RecipeResponse>() {
             @Override
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
@@ -254,7 +255,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadIngredientType(String ingredient){
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        ApiService apiService = RetrofitClient.getClient();
         Call<RecipeResponse> call = apiService.getRecipes("public", ingredient, APP_ID, APP_KEY);
         call.enqueue(new Callback<RecipeResponse>() {
             @Override

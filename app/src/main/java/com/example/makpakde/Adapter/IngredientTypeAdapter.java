@@ -1,5 +1,7 @@
 package com.example.makpakde.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.makpakde.DetailActivity;
 import com.example.makpakde.EdamamAPI.Recipe;
 import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
@@ -33,7 +36,6 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
     public void onBindViewHolder(@NonNull IngredientTypeAdapter.ViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
         holder.setData(recipe);
-
     }
 
     @Override
@@ -52,6 +54,21 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
             li_it_tv_label = itemView.findViewById(R.id.li_it_tv_label);
             li_it_tv_dietLabels = itemView.findViewById(R.id.li_it_tv_dietLabels);
             li_it_tv_cuisineType = itemView.findViewById(R.id.li_it_tv_cuisineType);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        Recipe clickedRecipe =recipeList.get(position);
+                        Context context = itemView.getContext();
+                        Intent toDetail = new Intent(context, DetailActivity.class);
+                        toDetail.putExtra("recipe", clickedRecipe.getUri());
+                        toDetail.putExtra("label", clickedRecipe.getLabel());
+                        context.startActivity(toDetail);
+                    }
+                }
+            });
         }
 
         public void setData(Recipe recipe) {
