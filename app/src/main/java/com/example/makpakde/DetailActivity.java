@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView ad_iv_image;
     ImageButton ad_ib_bookmark;
     TextView ad_tv_source;
-    ImageView ad_iv_url;
+    ImageView ad_ib_url;
     TextView ad_tv_cuisineType;
     TextView ad_tv_dietLabels;
     TextView ad_tv_totalTime;
@@ -73,7 +73,7 @@ public class DetailActivity extends AppCompatActivity {
         ad_iv_image = findViewById(R.id.ad_iv_image);
         ad_ib_bookmark = findViewById(R.id.ad_ib_bookmark);
         ad_tv_source = findViewById(R.id.ad_tv_source);
-        ad_iv_url = findViewById(R.id.ad_iv_url);
+        ad_ib_url = findViewById(R.id.ad_ib_url);
         ad_tv_cuisineType = findViewById(R.id.ad_tv_cuisineType);
         ad_tv_dietLabels = findViewById(R.id.ad_tv_dietLabels);
         ad_tv_totalTime = findViewById(R.id.ad_tv_totalTime);
@@ -82,7 +82,12 @@ public class DetailActivity extends AppCompatActivity {
         ingredientLayout = findViewById(R.id.ingredientLayout);
         totalNutrient = findViewById(R.id.totalnutrient);
 
-
+        ad_iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         String url = getIntent().getStringExtra("recipe");
         String label = getIntent().getStringExtra("label");
@@ -139,16 +144,16 @@ public class DetailActivity extends AppCompatActivity {
                     ad_tv_source.setText(" " + recipeResponse.getSource());
                     ad_tv_cuisineType.setText(formatListToString(cuisineType));
                     ad_tv_dietLabels.setText(formatListToString(dietLabels));
-                    ad_tv_totalWeight.setText(formatTolalWeight + " g");
-                    ad_tv_totalTime.setText(formatTolalTime+ " minute");
+                    ad_tv_totalWeight.setText(":" + formatTolalWeight + " g");
+                    ad_tv_totalTime.setText(":" + formatTolalTime+ " minute");
 
-//                    ad_iv_url.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent toSource = new Intent(Intent.ACTION_VIEW, Uri.parse(recipeResponse.getUrl()));
-//                            startActivity(toSource);
-//                        }
-//                    });
+                    ad_ib_url.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent toSource = new Intent(Intent.ACTION_VIEW, Uri.parse(recipeResponse.getUrl()));
+                            startActivity(toSource);
+                        }
+                    });
 
 
                     List<Ingredient> ingredients = recipeResponse.getIngredients();

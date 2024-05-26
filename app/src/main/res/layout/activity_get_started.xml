@@ -21,11 +21,11 @@
         android:text="Get Started"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_margin="30dp"
+        android:layout_marginBottom="70dp"
         android:backgroundTint="@color/primaryColor"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:fontFamily="@font/poppins_semibold"
-        android:paddingHorizontal="50sp"
+        android:paddingHorizontal="30sp"
         android:paddingVertical="10dp"
         android:drawableRight="@drawable/baseline_arrow_forward_24"/>
 

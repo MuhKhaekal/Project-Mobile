@@ -6,10 +6,10 @@
 
     <TextView
         android:id="@+id/ad_tv_totalNutritionsLabel"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="- Folate equivalent (total)"
         android:fontFamily="@font/poppins_semibold"
         android:textSize="15sp"
