@@ -1,5 +1,9 @@
 package com.example.makpakde.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.makpakde.DetailActivity.APP_TYPE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,14 +17,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.makpakde.Adapter.IngredientTypeAdapter;
+import com.example.makpakde.Adapter.RecentRecipeAdapter;
 import com.example.makpakde.Adapter.TopRecommendationAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
 import com.example.makpakde.EdamamAPI.Recipe;
 import com.example.makpakde.EdamamAPI.RecipeResponse;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
+import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
+import com.example.makpakde.Model.DatabaseHelper;
 import com.example.makpakde.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +47,13 @@ public class HomeFragment extends Fragment {
     private static final String APP_KEY = "06294766abfa75c4602e3bd8c2b35875";
     RecyclerView fh_rv_it;
     RecyclerView fh_rv_tr;
+    RecyclerView fh_rv_rr;
     IngredientTypeAdapter ingredientTypeAdapter;
     TopRecommendationAdapter topRecommendationAdapter;
+    RecentRecipeAdapter recentRecipeAdapter;
     private List<Recipe> recommendationList = new ArrayList<>();
     private List<Recipe> ingredientList = new ArrayList<>();
+    private List<Recipe> recentList = new ArrayList<>();
 
     protected Button fh_btn_chicken;
     Button fh_btn_beef;
@@ -57,6 +71,7 @@ public class HomeFragment extends Fragment {
     Button fh_btn_bread;
     Button fh_btn_octopus;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,6 +84,7 @@ public class HomeFragment extends Fragment {
 
         fh_rv_tr = view.findViewById(R.id.fh_rv_tr);
         fh_rv_it = view.findViewById(R.id.fh_rv_it);
+        fh_rv_rr = view.findViewById(R.id.fh_rv_rr);
 
         fh_btn_chicken = view.findViewById(R.id.fh_btn_chicken);
         fh_btn_beef = view.findViewById(R.id.fh_btn_beef);
@@ -85,6 +101,7 @@ public class HomeFragment extends Fragment {
         fh_btn_noodle = view.findViewById(R.id.fh_btn_noodle);
         fh_btn_bread = view.findViewById(R.id.fh_btn_bread);
         fh_btn_octopus = view.findViewById(R.id.fh_btn_octopus);
+
 
         fh_btn_chicken.setTag("chicken");
         fh_btn_beef.setTag("beef");
@@ -143,9 +160,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
+        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+        int userId = databaseHelper.loginUser(usernameLogin);
 
         loadIngredientType("chicken");
+        loadRecipeRecent(userId);
         View.OnClickListener buttonClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,4 +303,34 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+    public void loadRecipeRecent(int userId){
+        ApiService apiService = RetrofitClient.getClient();
+        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        for (String recipeId : databaseHelper.getRecipeIdsByUserId(userId)) {
+            Call<SingleRecipeResponse>call = apiService.getSingleRecipe(recipeId,"public", "chicken", APP_ID, APP_KEY);
+            call.enqueue(new Callback<SingleRecipeResponse>() {
+                @Override
+                public void onResponse(Call<SingleRecipeResponse> call, Response<SingleRecipeResponse> response) {
+                    if (response.isSuccessful()){
+                        Recipe recipeResponse = response.body().getSingleRecipe();
+                        recentList.add(0, recipeResponse);
+                        recentRecipeAdapter = new RecentRecipeAdapter(recentList);
+                        fh_rv_rr.setAdapter(recentRecipeAdapter);
+                        recentRecipeAdapter.notifyDataSetChanged();
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(Call<SingleRecipeResponse> call, Throwable t) {
+
+                }
+            });
+
+        }
+
+    }
+
+
 }

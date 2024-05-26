@@ -55,6 +55,11 @@ public class LoginActivity extends AppCompatActivity {
                 String username = login_et_username.getText().toString();
                 String password = login_et_password.getText().toString();
 
+                SharedPreferences preferencesUsername = LoginActivity.this.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+                SharedPreferences.Editor editorUsername = preferencesUsername.edit();
+                editorUsername.putString("usernameLogin", username);
+                editorUsername.apply();
+
                 if (databaseHelper.checkUsernamePassword(username, password)){
                     SharedPreferences preferences = LoginActivity.this.getSharedPreferences("preferencesLogin", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();

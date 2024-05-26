@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp">
         <ImageView
-            android:id="@+id/li_rt_iv_image"
+            android:id="@+id/li_rr_iv_image"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
@@ -32,21 +32,21 @@
 
             android:layout_weight="1">
             <TextView
-                android:id="@+id/li_rt_tv_label"
+                android:id="@+id/li_rr_tv_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="How to make sushi at home"
                 android:textColor="@color/black"
                 android:fontFamily="@font/poppins_semibold"/>
             <TextView
-                android:id="@+id/li_rt_tv_totalTime"
+                android:id="@+id/li_rr_tv_totalTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50 minute"
                 android:textColor="@color/secondaryColor"
                 android:fontFamily="@font/poppins_semibold"/>
             <TextView
-                android:id="@+id/li_rt_tv_mealTyple"
+                android:id="@+id/li_rr_tv_mealType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="lunch/dinner"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/li_rt_btn_bookmark"
+            android:id="@+id/li_rr_btn_bookmark"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_weight="1"
