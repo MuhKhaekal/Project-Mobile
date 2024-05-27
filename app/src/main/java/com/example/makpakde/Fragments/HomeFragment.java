@@ -303,7 +303,19 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
+        SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+        int userId = databaseHelper.loginUser(usernameLogin);
+        loadRecipeRecent(userId);
+    }
+
     public void loadRecipeRecent(int userId){
+        recentList.clear();
         ApiService apiService = RetrofitClient.getClient();
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         for (String recipeId : databaseHelper.getRecipeIdsByUserId(userId)) {

@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        main_bottomNavigation.show(home, true);
         main_bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
             public Unit invoke(MeowBottomNavigation.Model model) {

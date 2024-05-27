@@ -31,6 +31,10 @@
         public static final String RECIPE_COLUMN_ID = "id";
         public static final String RECIPE_COLUMN_RECIPE_ID = "recipe_id";
         public static final String RECIPE_COLUMN_USER_ID = "user_id";
+        public static final String TABLE_BOOKMARK = "bookmarks";
+        public static final String BOOKMARK_COLUMN_ID = "id";
+        public static final String BOOKMARK_COLUMN_RECIPE_ID = "recipe_id";
+        public static final String BOOKMARK_COLUMN_USER_ID = "user_id";
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,12 +47,16 @@
                     + USER_COLUMN_FULLNAME + " TEXT, "
                     + USER_COLUMN_USERNAME + " TEXT, "
                     + USER_COLUMN_PASSWORD + " TEXT )");
-
             db.execSQL("CREATE TABLE " + TABLE_RECENT_RECIPE + " ("
                     + RECIPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + RECIPE_COLUMN_RECIPE_ID + " TEXT, "
                     + RECIPE_COLUMN_USER_ID + " INTEGER, "
                     + "FOREIGN KEY(" + RECIPE_COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "))");
+            db.execSQL("CREATE TABLE " + TABLE_BOOKMARK + " ("
+                    + BOOKMARK_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + BOOKMARK_COLUMN_RECIPE_ID + " TEXT, "
+                    + BOOKMARK_COLUMN_USER_ID + " INTEGER, "
+                    + "FOREIGN KEY(" + BOOKMARK_COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "))");
 
         }
 
@@ -96,8 +104,6 @@
 
             return recipeIds;
         }
-
-
 
 
         public void insertDataUser(String fullname,String username, String password){
