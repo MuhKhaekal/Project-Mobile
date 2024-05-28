@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.makpakde.Fragments.BookmarkFragment;
 import com.example.makpakde.Fragments.HomeFragment;
 import com.example.makpakde.Fragments.SearchFragment;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected final int person = 5;
     HomeFragment homeFragment;
     SearchFragment searchFragment;
+    BookmarkFragment bookmarkFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         searchFragment = new SearchFragment();
+        bookmarkFragment = new BookmarkFragment();
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, homeFragment).commit();
 
@@ -83,9 +87,10 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, searchFragment).commit();
                         break;
                     case recommendation:name="recommendation";
-                        Toast.makeText(MainActivity.this, "recomendation diklik", Toast.LENGTH_SHORT).show();
+
                         break;
                     case bookmark:name="bookmark";
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, bookmarkFragment).commit();
                         Toast.makeText(MainActivity.this, "bookmark diklik", Toast.LENGTH_SHORT).show();
                         break;
                     case person:name="person";

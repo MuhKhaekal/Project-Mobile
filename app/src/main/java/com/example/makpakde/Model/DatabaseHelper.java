@@ -105,6 +105,32 @@
             return recipeIds;
         }
 
+        public Set<String> getRecipeIdsByUserIdBookmark(int userId) {
+            Set<String> recipeIds = new HashSet<>();
+            SQLiteDatabase db = getReadableDatabase();
+            String[] columns = {BOOKMARK_COLUMN_RECIPE_ID};
+            String selection = BOOKMARK_COLUMN_USER_ID + " = ?";
+            String[] selectionArgs = {String.valueOf(userId)};
+
+            Cursor cursor = db.query(TABLE_BOOKMARK, columns, selection, selectionArgs, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    String recipeId = cursor.getString(cursor.getColumnIndexOrThrow(BOOKMARK_COLUMN_RECIPE_ID));
+                    int hashIndex = recipeId.indexOf('#');
+                    int underscoreIndex = recipeId.indexOf('_', hashIndex);
+                    String recipeIdFix = recipeId.substring(underscoreIndex + 1);
+
+                    recipeIds.add(recipeIdFix);
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+
+            return recipeIds;
+        }
+
 
         public void insertDataUser(String fullname,String username, String password){
             SQLiteDatabase db = getWritableDatabase();
@@ -123,6 +149,14 @@
             values.put(RECIPE_COLUMN_RECIPE_ID, recipe_id);
             values.put(RECIPE_COLUMN_USER_ID, userId);
             db.insert(TABLE_RECENT_RECIPE, null, values);
+        }
+
+        public void insertBookmarkRecipe(String recipe_id, int userId) {
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(BOOKMARK_COLUMN_RECIPE_ID, recipe_id);
+            values.put(BOOKMARK_COLUMN_USER_ID, userId);
+            db.insert(TABLE_BOOKMARK, null, values);
         }
 
         public Cursor getAllRecordRecentRecipe(){
