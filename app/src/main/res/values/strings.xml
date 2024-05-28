@@ -5,9 +5,10 @@
 
 
     <string-array name="spinner_items">
-        <item>Item 1</item>
-        <item>Item 2</item>
-        <item>Item 3</item>
+        <item></item>
+        <item>Change Password</item>
+        <item>Change Theme</item>
+        <item>Logout</item>
         <!-- Tambahkan item lain jika diperlukan -->
     </string-array>
 

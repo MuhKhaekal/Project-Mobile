@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.FragmentProfile"
+    tools:context=".Fragments.ProfileFragment"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -32,6 +32,7 @@
             android:layout_marginTop="160dp"
             android:layout_marginStart="130dp"/>
         <Spinner
+            android:id="@+id/fp_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/primaryColor"
@@ -42,25 +43,22 @@
             android:layout_marginStart="130dp"/>
     </RelativeLayout>
 
-
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bookmarks"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fb_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Dark Mode"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"/>
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
+        tools:listitem="@layout/list_item_bookmark"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        />
 
 
 </LinearLayout>

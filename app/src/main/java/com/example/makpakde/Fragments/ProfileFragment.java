@@ -2,9 +2,9 @@ package com.example.makpakde.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -13,12 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.makpakde.Adapter.BookmarkAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
 import com.example.makpakde.EdamamAPI.Recipe;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
+import com.example.makpakde.LoginActivity;
 import com.example.makpakde.Model.DatabaseHelper;
 import com.example.makpakde.R;
 
@@ -29,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class  BookmarkFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     private static final String APP_ID = "f22371a7";
     private static final String APP_KEY = "06294766abfa75c4602e3bd8c2b35875";
     public static final String APP_TYPE = "public";
@@ -42,13 +47,13 @@ public class  BookmarkFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bookmark, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         fb_rv = view.findViewById(R.id.fb_rv);
 
         bookmarkList = new ArrayList<>();
@@ -57,8 +62,48 @@ public class  BookmarkFragment extends Fragment {
 
         databaseHelper = new DatabaseHelper(getActivity());
         loadBookmark();
-    }
+        Spinner spinner = view.findViewById(R.id.fp_spinner);
 
+        String[] items = new String[]{"Settings", "Change Password","Change Theme", "Logout"};
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        spinner.setAdapter(adapter);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 1:
+                        Toast.makeText(getActivity(), "Halaman 1 dipilih", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(getActivity(), "Halaman 2 dipilih", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("preferencesLogin", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("checkLogin", false);
+                        editor.apply();
+
+                        Intent toLogin = new Intent(getContext(), LoginActivity.class);
+                        startActivity(toLogin);
+                        getActivity().finish();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+    }
     @Override
     public void onResume() {
         super.onResume();

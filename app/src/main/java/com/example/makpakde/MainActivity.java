@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.makpakde.Fragments.BookmarkFragment;
 import com.example.makpakde.Fragments.HomeFragment;
+import com.example.makpakde.Fragments.ProfileFragment;
 import com.example.makpakde.Fragments.SearchFragment;
 
 import kotlin.Unit;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     SearchFragment searchFragment;
     BookmarkFragment bookmarkFragment;
+    ProfileFragment profileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         searchFragment = new SearchFragment();
         bookmarkFragment = new BookmarkFragment();
+        profileFragment = new ProfileFragment();
 
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, homeFragment).commit();
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "bookmark diklik", Toast.LENGTH_SHORT).show();
                         break;
                     case person:name="person";
-                        Toast.makeText(MainActivity.this, "person diklik", Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, profileFragment).commit();
                         break;
                 }
                 main_bottomNavigation.setCount(bookmark, "9");
