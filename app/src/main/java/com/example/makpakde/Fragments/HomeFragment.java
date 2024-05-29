@@ -163,7 +163,7 @@ public class HomeFragment extends Fragment {
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-        int userId = databaseHelper.loginUser(usernameLogin);
+        int userId = databaseHelper.getIdLoginUser(usernameLogin);
 
         loadIngredientType("chicken");
         loadRecipeRecent(userId);
@@ -310,7 +310,7 @@ public class HomeFragment extends Fragment {
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-        int userId = databaseHelper.loginUser(usernameLogin);
+        int userId = databaseHelper.getIdLoginUser(usernameLogin);
         loadRecipeRecent(userId);
     }
 

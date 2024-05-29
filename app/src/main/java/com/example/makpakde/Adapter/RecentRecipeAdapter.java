@@ -86,7 +86,7 @@ public class RecentRecipeAdapter extends RecyclerView.Adapter<RecentRecipeAdapte
                         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
 
                         Recipe clickedRecipe =recipeList.get(position);
-                        int userId = databaseHelper.loginUser(usernameLogin);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.insertBookmarkRecipe(clickedRecipe.getUri(), userId);
 
                     }

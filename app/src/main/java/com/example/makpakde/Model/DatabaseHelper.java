@@ -63,14 +63,14 @@
                     + "FOREIGN KEY(" + BOOKMARK_COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "))");
         }
 
-        public int loginUser(String username) {
+        public int getIdLoginUser(String username) {
             SQLiteDatabase db = this.getReadableDatabase();
             String[] projection = {USER_COLUMN_ID};
             String selection = USER_COLUMN_USERNAME + " = ?";
             String[] selectionArgs = {username};
 
             Cursor cursor = db.query(TABLE_USER, projection, selection, selectionArgs, null, null, null);
-            int userId = -1; // Nilai default jika login gagal
+            int userId = -1;
 
             if (cursor.moveToFirst()) {
                 userId = cursor.getInt(cursor.getColumnIndexOrThrow(USER_COLUMN_ID));
@@ -80,6 +80,25 @@
             db.close();
 
             return userId;
+        }
+
+        public String getFullNameLoginUser(String username) {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String[] projection = {USER_COLUMN_FULLNAME};
+            String selection = USER_COLUMN_USERNAME + " = ?";
+            String[] selectionArgs = {username};
+
+            Cursor cursor = db.query(TABLE_USER, projection, selection, selectionArgs, null, null, null);
+            String fullName = "";
+
+            if (cursor.moveToFirst()) {
+                fullName = cursor.getString(cursor.getColumnIndexOrThrow(USER_COLUMN_FULLNAME));
+            }
+
+            cursor.close();
+            db.close();
+
+            return fullName;
         }
 
         public Set<String> getRecipeIdsByUserId(int userId) {

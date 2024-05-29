@@ -67,7 +67,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
 
                         Recipe clickedRecipe =recipeList.get(position);
-                        int userId = databaseHelper.loginUser(usernameLogin);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.deleteBookmark(clickedRecipe.getUri(), userId);
 
                     }

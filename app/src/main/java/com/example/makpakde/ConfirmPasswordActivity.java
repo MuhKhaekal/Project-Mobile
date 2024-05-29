@@ -38,7 +38,7 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
 
                 SharedPreferences preferencesUsername = ConfirmPasswordActivity.this.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
                 String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-                int userId = databaseHelper.loginUser(usernameLogin);
+                int userId = databaseHelper.getIdLoginUser(usernameLogin);
 
                 String password = confirm_et_password.getText().toString().trim();
                 Boolean cek = databaseHelper.checkPassword(userId, password); // Gunakan password yang benar

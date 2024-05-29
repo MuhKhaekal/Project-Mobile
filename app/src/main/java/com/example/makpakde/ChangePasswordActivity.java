@@ -1,6 +1,7 @@
 package com.example.makpakde;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -42,16 +44,30 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 String confrimNewPassword = change_et_confirmPassword.getText().toString().trim();
 
                 if (newPassword.equalsIgnoreCase(confrimNewPassword)){
-                    DatabaseHelper databaseHelper = new DatabaseHelper(ChangePasswordActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChangePasswordActivity.this);
+                    builder.setTitle("Change Password")
+                            .setMessage("Are you sure you want to change your password?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    DatabaseHelper databaseHelper = new DatabaseHelper(ChangePasswordActivity.this);
 
-                    SharedPreferences preferencesUsername = ChangePasswordActivity.this.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
-                    String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+                                    SharedPreferences preferencesUsername = ChangePasswordActivity.this.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+                                    String usernameLogin = preferencesUsername.getString("usernameLogin", "");
 
-                    int userId = databaseHelper.loginUser(usernameLogin);
-                    databaseHelper.updateRecordUserPassword(userId, confrimNewPassword);
-                    Toast.makeText(ChangePasswordActivity.this, "Success change password", Toast.LENGTH_SHORT).show();
-                    Intent toMain = new Intent(ChangePasswordActivity.this, MainActivity.class);
-                    startActivity(toMain);
+                                    int userId = databaseHelper.getIdLoginUser(usernameLogin);
+                                    databaseHelper.updateRecordUserPassword(userId, confrimNewPassword);
+                                    Toast.makeText(ChangePasswordActivity.this, "Success change password", Toast.LENGTH_SHORT).show();
+                                    Intent toMain = new Intent(ChangePasswordActivity.this, MainActivity.class);
+                                    startActivity(toMain);
+                                }
+                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            }).show();
                 } else {
                     Toast.makeText(ChangePasswordActivity.this, "Confirm your password", Toast.LENGTH_SHORT).show();
                 }

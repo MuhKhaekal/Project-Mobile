@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,12 +55,14 @@ public class TopRecommendationAdapter extends RecyclerView.Adapter<TopRecommenda
         TextView li_tr_tv_label;
         TextView li_tr_tv_totalTime;
         TextView li_tr_tv_mealType;
+        ImageButton li_tr_ib_bookmark;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             li_tr_iv_image = itemView.findViewById(R.id.li_tr_iv_image);
             li_tr_tv_label = itemView.findViewById(R.id.li_tr_tv_label);
             li_tr_tv_totalTime = itemView.findViewById(R.id.li_tr_tv_totalTime);
             li_tr_tv_mealType = itemView.findViewById(R.id.li_tr_tv_mealType);
+            li_tr_ib_bookmark = itemView.findViewById(R.id.li_tr_ib_bookmark);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,13 +76,31 @@ public class TopRecommendationAdapter extends RecyclerView.Adapter<TopRecommenda
 
                         Recipe clickedRecipe =recipeList.get(position);
 
-                        int userId = databaseHelper.loginUser(usernameLogin);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.insertRecentRecipe(clickedRecipe.getUri(), userId);
 
                         Intent toDetail = new Intent(context, DetailActivity.class);
                         toDetail.putExtra("recipe", clickedRecipe.getUri());
                         toDetail.putExtra("label", clickedRecipe.getLabel());
                         context.startActivity(toDetail);
+                    }
+                }
+            });
+            li_tr_ib_bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        DatabaseHelper databaseHelper = new DatabaseHelper(itemView.getContext());
+                        Context context = itemView.getContext();
+
+                        SharedPreferences preferencesUsername = context.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+                        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+
+                        Recipe clickedRecipe =recipeList.get(position);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
+                        databaseHelper.insertBookmarkRecipe(clickedRecipe.getUri(), userId);
+
                     }
                 }
             });

@@ -57,7 +57,7 @@
 
         <ImageButton
             android:layout_gravity="center_horizontal"
-            android:id="@+id/li_tr_btn_bookmark"
+            android:id="@+id/li_tr_ib_bookmark"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_weight="1"

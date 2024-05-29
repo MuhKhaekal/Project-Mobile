@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.makpakde.Adapter.BookmarkAdapter;
@@ -44,6 +45,7 @@ public class ProfileFragment extends Fragment {
     BookmarkAdapter bookmarkAdapter;
     private List<Recipe> bookmarkList;
     DatabaseHelper databaseHelper;
+    TextView fp_tv_fullname;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,12 +58,19 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fb_rv = view.findViewById(R.id.fb_rv);
+        fp_tv_fullname = view.findViewById(R.id.fp_tv_fullname);
+        databaseHelper = new DatabaseHelper(getActivity());
+
+        SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+                String fullName = databaseHelper.getFullNameLoginUser(usernameLogin);
+        fp_tv_fullname.setText(fullName);
 
         bookmarkList = new ArrayList<>();
         bookmarkAdapter = new BookmarkAdapter(bookmarkList);
         fb_rv.setAdapter(bookmarkAdapter);
 
-        databaseHelper = new DatabaseHelper(getActivity());
+
         loadBookmark();
         Spinner spinner = view.findViewById(R.id.fp_spinner);
 
@@ -111,7 +120,7 @@ public class ProfileFragment extends Fragment {
     public void loadBookmark() {
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-        int userId = databaseHelper.loginUser(usernameLogin);
+        int userId = databaseHelper.getIdLoginUser(usernameLogin);
 
         bookmarkList.clear();
         ApiService apiService = RetrofitClient.getClient();

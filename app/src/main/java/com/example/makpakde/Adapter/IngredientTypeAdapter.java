@@ -74,7 +74,7 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
                         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
 
                         Recipe clickedRecipe =recipeList.get(position);
-                        int userId = databaseHelper.loginUser(usernameLogin);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.insertBookmarkRecipe(clickedRecipe.getUri(), userId);
 
                     }
@@ -92,7 +92,7 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
                         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
 
                         Recipe clickedRecipe = recipeList.get(position);
-                        int userId = databaseHelper.loginUser(usernameLogin);
+                        int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.insertRecentRecipe(clickedRecipe.getUri(), userId);
 
 

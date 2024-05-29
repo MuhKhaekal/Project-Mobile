@@ -63,7 +63,7 @@ public class  BookmarkFragment extends Fragment {
     public void loadBookmark() {
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-        int userId = databaseHelper.loginUser(usernameLogin);
+        int userId = databaseHelper.getIdLoginUser(usernameLogin);
 
         bookmarkList.clear();
         ApiService apiService = RetrofitClient.getClient();
