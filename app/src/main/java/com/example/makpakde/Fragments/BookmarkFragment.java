@@ -59,11 +59,6 @@ public class  BookmarkFragment extends Fragment {
         loadBookmark();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadBookmark();
-    }
 
     public void loadBookmark() {
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
@@ -79,7 +74,7 @@ public class  BookmarkFragment extends Fragment {
                 public void onResponse(Call<SingleRecipeResponse> call, Response<SingleRecipeResponse> response) {
                     if (response.isSuccessful()) {
                         Recipe recipeResponse = response.body().getSingleRecipe();
-                        bookmarkList.add(recipeResponse);
+                        bookmarkList.add(0, recipeResponse);
                         bookmarkAdapter.notifyDataSetChanged();
                     }
                 }

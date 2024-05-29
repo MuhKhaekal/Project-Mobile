@@ -31,10 +31,12 @@
         public static final String RECIPE_COLUMN_ID = "id";
         public static final String RECIPE_COLUMN_RECIPE_ID = "recipe_id";
         public static final String RECIPE_COLUMN_USER_ID = "user_id";
+        public static final String RECIPE_COLUMN_TIME_STAMP = "timestamp";
         public static final String TABLE_BOOKMARK = "bookmarks";
         public static final String BOOKMARK_COLUMN_ID = "id";
         public static final String BOOKMARK_COLUMN_RECIPE_ID = "recipe_id";
         public static final String BOOKMARK_COLUMN_USER_ID = "user_id";
+        public static final String BOOKMARK_COLUMN_TIME_STAMP = "timestamp";
 
         public DatabaseHelper(@Nullable Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -48,16 +50,17 @@
                     + USER_COLUMN_USERNAME + " TEXT, "
                     + USER_COLUMN_PASSWORD + " TEXT )");
             db.execSQL("CREATE TABLE " + TABLE_RECENT_RECIPE + " ("
+                    + RECIPE_COLUMN_TIME_STAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                     + RECIPE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + RECIPE_COLUMN_RECIPE_ID + " TEXT, "
                     + RECIPE_COLUMN_USER_ID + " INTEGER, "
                     + "FOREIGN KEY(" + RECIPE_COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "))");
             db.execSQL("CREATE TABLE " + TABLE_BOOKMARK + " ("
+                    + BOOKMARK_COLUMN_TIME_STAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
                     + BOOKMARK_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + BOOKMARK_COLUMN_RECIPE_ID + " TEXT, "
                     + BOOKMARK_COLUMN_USER_ID + " INTEGER, "
                     + "FOREIGN KEY(" + BOOKMARK_COLUMN_USER_ID + ") REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "))");
-
         }
 
         public int loginUser(String username) {
@@ -86,7 +89,7 @@
             String selection = RECIPE_COLUMN_USER_ID + " = ?";
             String[] selectionArgs = {String.valueOf(userId)};
 
-            Cursor cursor = db.query(TABLE_RECENT_RECIPE, columns, selection, selectionArgs, null, null, null);
+            Cursor cursor = db.query(TABLE_RECENT_RECIPE, columns, selection, selectionArgs, null, null, RECIPE_COLUMN_TIME_STAMP + " DESC");
 
             if (cursor.moveToFirst()) {
                 do {
@@ -112,7 +115,7 @@
             String selection = BOOKMARK_COLUMN_USER_ID + " = ?";
             String[] selectionArgs = {String.valueOf(userId)};
 
-            Cursor cursor = db.query(TABLE_BOOKMARK, columns, selection, selectionArgs, null, null, null);
+            Cursor cursor = db.query(TABLE_BOOKMARK, columns, selection, selectionArgs, null, null, BOOKMARK_COLUMN_TIME_STAMP + " DESC");
 
             if (cursor.moveToFirst()) {
                 do {
@@ -164,6 +167,15 @@
             return db.rawQuery("SELECT * FROM " + TABLE_RECENT_RECIPE, null);
         }
 
+        public boolean isRecipeBookmarked(String recipe_id, int userId) {
+            SQLiteDatabase db = getReadableDatabase();
+            String query = "SELECT 1 FROM " + TABLE_BOOKMARK + " WHERE " + BOOKMARK_COLUMN_RECIPE_ID + " = ? AND " + BOOKMARK_COLUMN_USER_ID + " = ?";
+            Cursor cursor = db.rawQuery(query, new String[]{recipe_id, String.valueOf(userId)});
+            boolean exists = (cursor.getCount() > 0);
+            cursor.close();
+            return exists;
+        }
+
 
         public Boolean checkUsername(String username){
             SQLiteDatabase db = getWritableDatabase();
@@ -173,6 +185,14 @@
             } else {
                 return false;
             }
+        }
+
+        public Boolean checkPassword(int id, String username){
+            SQLiteDatabase db = getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM users WHERE id = ? AND password = ? ", new String[]{String.valueOf(id), username});
+            Boolean result = cursor.getCount() > 0;
+            cursor.close();
+            return result;
         }
 
         public Boolean checkUsernamePassword(String username, String password){
@@ -191,6 +211,12 @@
 
             values.put(USER_COLUMN_FULLNAME, fullname);
             db.update(TABLE_USER, values, USER_COLUMN_ID + " = ? ", new String[]{String.valueOf(id)});
+        }
+
+        public boolean deleteBookmark(String recipeId, int userId) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            return db.delete(TABLE_BOOKMARK, BOOKMARK_COLUMN_RECIPE_ID + "=? AND " + BOOKMARK_COLUMN_USER_ID + "=?",
+                    new String[]{String.valueOf(recipeId), String.valueOf(userId)}) > 0;
         }
 
         public void updateRecordUserPassword(int id, String password){

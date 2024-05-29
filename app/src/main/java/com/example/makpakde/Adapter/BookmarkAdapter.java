@@ -1,5 +1,9 @@
 package com.example.makpakde.Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Model.DatabaseHelper;
 import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +54,25 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             li_bookmark_iv_image = itemView.findViewById(R.id.li_bookmark_iv_image);
             li_bookmark_tv_label = itemView.findViewById(R.id.li_bookmark_tv_label);
             li_bookmark_ib_bookmark = itemView.findViewById(R.id.li_bookmark_ib_bookmark);
+
+            li_bookmark_ib_bookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        DatabaseHelper databaseHelper = new DatabaseHelper(itemView.getContext());
+                        Context context = itemView.getContext();
+
+                        SharedPreferences preferencesUsername = context.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+                        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+
+                        Recipe clickedRecipe =recipeList.get(position);
+                        int userId = databaseHelper.loginUser(usernameLogin);
+                        databaseHelper.deleteBookmark(clickedRecipe.getUri(), userId);
+
+                    }
+                }
+            });
         }
 
         public void setData(Recipe recipe) {

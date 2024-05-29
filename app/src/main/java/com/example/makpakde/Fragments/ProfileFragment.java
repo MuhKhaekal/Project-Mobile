@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.makpakde.Adapter.BookmarkAdapter;
+import com.example.makpakde.ConfirmPasswordActivity;
 import com.example.makpakde.EdamamAPI.ApiService;
 import com.example.makpakde.EdamamAPI.Recipe;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
@@ -79,7 +80,8 @@ public class ProfileFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 1:
-                        Toast.makeText(getActivity(), "Halaman 1 dipilih", Toast.LENGTH_SHORT).show();
+                        Intent toConfirmPassword = new Intent(getActivity(), ConfirmPasswordActivity.class);
+                        startActivity(toConfirmPassword);
                         break;
                     case 2:
                         Toast.makeText(getActivity(), "Halaman 2 dipilih", Toast.LENGTH_SHORT).show();
@@ -104,11 +106,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadBookmark();
-    }
+
 
     public void loadBookmark() {
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
@@ -124,7 +122,7 @@ public class ProfileFragment extends Fragment {
                 public void onResponse(Call<SingleRecipeResponse> call, Response<SingleRecipeResponse> response) {
                     if (response.isSuccessful()) {
                         Recipe recipeResponse = response.body().getSingleRecipe();
-                        bookmarkList.add(recipeResponse);
+                        bookmarkList.add(0, recipeResponse);
                         bookmarkAdapter.notifyDataSetChanged();
                     }
                 }

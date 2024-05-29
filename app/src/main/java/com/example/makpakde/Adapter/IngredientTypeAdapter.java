@@ -62,29 +62,6 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
             li_it_tv_cuisineType = itemView.findViewById(R.id.li_it_tv_cuisineType);
             li_it_ib_bookmark = itemView.findViewById(R.id.li_it_btn_bookmark);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION){
-                        DatabaseHelper databaseHelper = new DatabaseHelper(itemView.getContext());
-                        Context context = itemView.getContext();
-                        SharedPreferences preferencesUsername = context.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
-                        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-
-                        Recipe clickedRecipe =recipeList.get(position);
-                        int userId = databaseHelper.loginUser(usernameLogin);
-                        databaseHelper.insertRecentRecipe(clickedRecipe.getUri(), userId);
-
-
-                        Intent toDetail = new Intent(context, DetailActivity.class);
-                        toDetail.putExtra("recipe", clickedRecipe.getUri());
-                        toDetail.putExtra("label", clickedRecipe.getLabel());
-                        context.startActivity(toDetail);
-                    }
-                }
-            });
-
             li_it_ib_bookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,6 +80,31 @@ public class IngredientTypeAdapter extends RecyclerView.Adapter<IngredientTypeAd
                     }
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        DatabaseHelper databaseHelper = new DatabaseHelper(itemView.getContext());
+                        Context context = itemView.getContext();
+                        SharedPreferences preferencesUsername = context.getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+                        String usernameLogin = preferencesUsername.getString("usernameLogin", "");
+
+                        Recipe clickedRecipe = recipeList.get(position);
+                        int userId = databaseHelper.loginUser(usernameLogin);
+                        databaseHelper.insertRecentRecipe(clickedRecipe.getUri(), userId);
+
+
+                        Intent toDetail = new Intent(context, DetailActivity.class);
+                        toDetail.putExtra("recipe", clickedRecipe.getUri());
+                        toDetail.putExtra("label", clickedRecipe.getLabel());
+                        context.startActivity(toDetail);
+                    }
+                }
+            });
+
+
 
         }
 
