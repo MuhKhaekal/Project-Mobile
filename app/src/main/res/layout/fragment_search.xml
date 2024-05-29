@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,32 +8,82 @@
     android:orientation="vertical"
     android:padding="15dp">
 
-    <TextView
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/search_ll_disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="300dp"
+        android:layout_centerInParent="true">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            style="@style/SpinKitView.FoldingCube"
+            android:layout_marginBottom="20dp"
+            app:SpinKit_Color="@color/secondaryColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connection lost ..."
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/search_btn_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/primaryColor"
+
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="Load More"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_ll_connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="What recipe are you looking for?"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/fs_sv"
+        android:orientation="vertical">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            android:hint="Search here ..."/>
-    </androidx.cardview.widget.CardView>
+            android:fontFamily="@font/poppins_semibold"
+            android:text="What recipe are you looking for?"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp">
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/fs_sv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondaryColor"
+                android:hint="Search here ..."/>
+        </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fs_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/list_item_search"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fs_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/list_item_search"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+
+
+</RelativeLayout>

@@ -2,7 +2,10 @@ package com.example.makpakde;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import retrofit2.Call;
@@ -10,6 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +39,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -57,6 +64,10 @@ public class DetailActivity extends AppCompatActivity {
     TextView ad_tv_countItems;
     LinearLayout ingredientLayout;
     LinearLayout totalNutrient;
+    LinearLayout detail_ll_connect;
+    LinearLayout detail_ll_disconnect;
+    LinearLayout detail_ll_thread;
+    Button detail_btn_load;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,11 +92,65 @@ public class DetailActivity extends AppCompatActivity {
         ad_tv_countItems = findViewById(R.id.ad_tv_countItems);
         ingredientLayout = findViewById(R.id.ingredientLayout);
         totalNutrient = findViewById(R.id.totalnutrient);
+        detail_ll_connect = findViewById(R.id.detail_ll_connect);
+        detail_ll_disconnect = findViewById(R.id.detail_ll_disconnect);
+        detail_btn_load = findViewById(R.id.detail_btn_load);
 
+        detail_ll_thread = findViewById(R.id.detail_ll_thread);
+
+        detail_ll_thread.setVisibility(View.VISIBLE);
+        detail_ll_disconnect.setVisibility(View.GONE);
+        detail_ll_connect.setVisibility(View.GONE);
+
+
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() ->{
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e){
+                throw new RuntimeException(e);
+            }
+
+            runOnUiThread(()->{
+                if (isConnected()){
+                    detail_ll_thread.setVisibility(View.GONE);
+                    detail_ll_disconnect.setVisibility(View.GONE);
+                    detail_ll_connect.setVisibility(View.VISIBLE);
+
+                    firstCall();
+
+                } else {
+                    detail_ll_disconnect.setVisibility(View.VISIBLE);
+                    detail_ll_connect.setVisibility(View.GONE);
+                }
+
+                detail_btn_load.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (isConnected()){
+                            detail_ll_thread.setVisibility(View.GONE);
+                            detail_ll_disconnect.setVisibility(View.GONE);
+                            detail_ll_connect.setVisibility(View.VISIBLE);
+
+                            firstCall();
+
+                        }
+                    }
+                });
+
+
+            });
+
+        });
+
+
+
+    }
+
+    private  void firstCall(){
         ad_iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();
             }
         });
@@ -201,6 +266,16 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            if (activeNetwork != null) {
+                return activeNetwork.isConnected() || activeNetwork.isConnectedOrConnecting();
+            }
+        }
+        return false;
+    }
 
     public static String checkKeywords(List<String> keywords, String nama) {
         String query = "";
@@ -229,11 +304,6 @@ public class DetailActivity extends AppCompatActivity {
         return formattedString.toString();
     }
 
-//    private void addNutrientTextView(String nutrientLabel, float nutrientQuantity) {
-//        LinearLayout totalNutrientLayout = findViewById(R.id.totalnutrient);
-//        TextView nutrientTextView = new TextView(DetailActivity.this);
-//        nutrientTextView.setText(nutrientLabel + ": " + nutrientQuantity);
-//        totalNutrientLayout.addView(nutrientTextView);
-//    }
+
 
 }

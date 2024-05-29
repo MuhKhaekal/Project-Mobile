@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,223 +8,276 @@
     android:padding="15dp"
     tools:context=".Fragments.HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Find best recipe for cooking"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Top recommendation 🔥"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fh_rv_tr"
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/home_ll_disconnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_toprecommendation" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="300dp"
+        android:layout_centerInParent="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Ingredient type 🥚"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        <com.github.ybq.android.spinkit.SpinKitView
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginBottom="10dp">
-        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            style="@style/SpinKitView.FoldingCube"
+            android:layout_marginBottom="20dp"
+            app:SpinKit_Color="@color/secondaryColor"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/fh_btn_chicken"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Chicken"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp" />
-            <Button
-                android:id="@+id/fh_btn_beef"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Beef"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_fish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Fish"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_tofu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Tofu"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_vegetables"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Vegatables"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_egg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Egg"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_shrimp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Shrimp"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_dairy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Dairy"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_flour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Flour"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_fruits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Fruits"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_seeds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Seeds"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_sausage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Sausage"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_noodle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Noodle"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_bread"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Bread"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
-            <Button
-                android:id="@+id/fh_btn_octopus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/white"
-                android:text="Octopus"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginEnd="10dp"
-                android:elevation="10dp"/>
+            android:text="Connection lost ..."
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/home_btn_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/primaryColor"
+
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="Load More"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 
-        </LinearLayout>
 
-    </HorizontalScrollView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fh_rv_it"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_ingredienttype" />
-    <TextView
+    <LinearLayout
+        android:id="@+id/home_ll_connect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Recent recipe 🔁"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fh_rv_rr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Find best recipe for cooking"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Top recommendation 🔥"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fh_rv_tr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_toprecommendation" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Ingredient type 🥚"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/fh_btn_chicken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Chicken"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp" />
+                <Button
+                    android:id="@+id/fh_btn_beef"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Beef"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_fish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Fish"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_tofu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Tofu"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_vegetables"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Vegatables"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_egg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Egg"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_shrimp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Shrimp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_dairy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Dairy"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_flour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Flour"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_fruits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Fruits"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_seeds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Seeds"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_sausage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Sausage"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_noodle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Noodle"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_bread"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Bread"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+                <Button
+                    android:id="@+id/fh_btn_octopus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/secondaryColor"
+                    android:textColor="@color/white"
+                    android:text="Octopus"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="10dp"/>
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fh_rv_it"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_ingredienttype" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Recent recipe 🔁"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fh_rv_rr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

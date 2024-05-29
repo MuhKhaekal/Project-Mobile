@@ -2,8 +2,11 @@ package com.example.makpakde.Fragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +51,10 @@ public class ProfileFragment extends Fragment {
     private List<Recipe> bookmarkList;
     DatabaseHelper databaseHelper;
     TextView fp_tv_fullname;
+    LinearLayout profile_ll_connect;
+    LinearLayout profile_ll_disconnect;
+    Spinner spinner;
+    Button profile_btn_load;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,32 +66,59 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        profile_ll_connect = view.findViewById(R.id.profle_ll_connect);
+        profile_ll_disconnect = view.findViewById(R.id.profile_ll_disconnect);
+        profile_btn_load = view.findViewById(R.id.profile_btn_load);
+
+        profile_ll_disconnect.setVisibility(View.VISIBLE);
+        profile_ll_connect.setVisibility(View.GONE);
+
         fb_rv = view.findViewById(R.id.fb_rv);
         fp_tv_fullname = view.findViewById(R.id.fp_tv_fullname);
+        spinner = view.findViewById(R.id.fp_spinner);
+
+        if (isConnected()){
+            profile_ll_disconnect.setVisibility(View.GONE);
+            profile_ll_connect.setVisibility(View.VISIBLE);
+            firstCall();
+        } else {
+            profile_ll_disconnect.setVisibility(View.VISIBLE);
+            profile_ll_connect.setVisibility(View.GONE);
+        }
+
+        profile_btn_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isConnected()) {
+                    profile_btn_load.setVisibility(View.GONE);
+                    profile_btn_load.setVisibility(View.VISIBLE);
+                    firstCall();
+                }
+            }
+        });
+
+    }
+
+    private void firstCall(){
         databaseHelper = new DatabaseHelper(getActivity());
 
         SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
-                String fullName = databaseHelper.getFullNameLoginUser(usernameLogin);
+        String fullName = databaseHelper.getFullNameLoginUser(usernameLogin);
         fp_tv_fullname.setText(fullName);
 
         bookmarkList = new ArrayList<>();
         bookmarkAdapter = new BookmarkAdapter(bookmarkList);
         fb_rv.setAdapter(bookmarkAdapter);
 
-
         loadBookmark();
-        Spinner spinner = view.findViewById(R.id.fp_spinner);
+
 
         String[] items = new String[]{"Settings", "Change Password","Change Theme", "Logout"};
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         spinner.setAdapter(adapter);
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,6 +150,17 @@ public class ProfileFragment extends Fragment {
                 // Do nothing
             }
         });
+
+    }
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            if (activeNetwork != null) {
+                return activeNetwork.isConnected() || activeNetwork.isConnectedOrConnecting();
+            }
+        }
+        return false;
     }
 
 

@@ -26,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     MeowBottomNavigation main_bottomNavigation;
     protected final int home = 1;
     protected final int search = 2;
-    protected final int recommendation = 3;
-    protected final int bookmark = 4;
-    protected final int person = 5;
+    protected final int person = 3;
     HomeFragment homeFragment;
     SearchFragment searchFragment;
     BookmarkFragment bookmarkFragment;
@@ -58,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         main_bottomNavigation = findViewById(R.id.main_bottomNavigation);
         main_bottomNavigation.add(new MeowBottomNavigation.Model(home, R.drawable.baseline_home_24));
         main_bottomNavigation.add(new MeowBottomNavigation.Model(search, R.drawable.baseline_search_24));
-        main_bottomNavigation.add(new MeowBottomNavigation.Model(recommendation, R.drawable.baseline_auto_awesome_24));
-        main_bottomNavigation.add(new MeowBottomNavigation.Model(bookmark, R.drawable.baseline_bookmarks_24));
         main_bottomNavigation.add(new MeowBottomNavigation.Model(person, R.drawable.baseline_person_24));
 
         homeFragment = new HomeFragment();
@@ -89,18 +85,11 @@ public class MainActivity extends AppCompatActivity {
                     case search:name="search";
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, searchFragment).commit();
                         break;
-                    case recommendation:name="recommendation";
-
-                        break;
-                    case bookmark:name="bookmark";
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, bookmarkFragment).commit();
-                        Toast.makeText(MainActivity.this, "bookmark diklik", Toast.LENGTH_SHORT).show();
-                        break;
                     case person:name="person";
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, profileFragment).commit();
                         break;
                 }
-                main_bottomNavigation.setCount(bookmark, "9");
+//                main_bottomNavigation.setCount(bookmark, "9");
                 return null;
             }
         });

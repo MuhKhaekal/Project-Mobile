@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,220 +9,290 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:id="@+id/detail_ll_thread"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp">
-        <ImageView
-            android:id="@+id/ad_iv_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:layout_marginEnd="10dp"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="300dp"
+        android:layout_centerInParent="true">
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            style="@style/SpinKitView.FoldingCube"
+            android:layout_marginBottom="20dp"
+            app:SpinKit_Color="@color/secondaryColor"/>
         <TextView
-            android:id="@+id/ad_tv_label"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Makanan Enak"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="30dp"
-            android:textColor="@color/black"/>
+            android:text="Please Wait ..."
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="10dp"/>
+
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="15dp">
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/detail_ll_disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="300dp"
+        android:layout_centerInParent="true">
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            style="@style/SpinKitView.FoldingCube"
+            android:layout_marginBottom="20dp"
+            app:SpinKit_Color="@color/secondaryColor"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connection lost ..."
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/detail_btn_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/primaryColor"
 
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="7dp"
+            android:text="Load More"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detail_ll_connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/ad_iv_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"/>
-                <ImageButton
-                    android:id="@+id/ad_ib_bookmark"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_weight="1"
-                    android:src="@drawable/baseline_bookmark_border_24"
-                    android:elevation="1dp"
-                    android:background="@drawable/card_button_default"/>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/ad_tv_source"
-                    android:drawableLeft="@drawable/baseline_fastfood_24"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Chef Arnold"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="20sp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"/>
-                <ImageButton
-                    android:id="@+id/ad_ib_url"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/baseline_import_contacts_24"
-                    android:elevation="10dp"
-                    android:background="@drawable/card_button_default"/>
-            </LinearLayout>
-
+            android:orientation="horizontal"
+            android:padding="15dp">
+            <ImageView
+                android:id="@+id/ad_iv_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:layout_marginEnd="10dp"/>
             <TextView
-                android:id="@+id/ad_tv_cuisineType"
+                android:id="@+id/ad_tv_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mexico Food"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                tools:text="Makanan Enak"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="30dp"
                 android:textColor="@color/black"/>
-            <TextView
-                android:id="@+id/ad_tv_dietLabels"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Low-Carb"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_gravity="center_vertical"
+        </LinearLayout>
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cook total time"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="15sp"
-                    android:layout_weight="3"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/ad_tv_totalTime"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=": 7349 minute"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    tools:ignore="RtlCompat" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Total weight food"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="15sp"
-                    android:layout_weight="3"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/ad_tv_totalWeight"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=": 7349 g"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="15sp"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"
-                    tools:ignore="RtlCompat" />
-            </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="15dp">
 
             <LinearLayout
+                android:id="@+id/ingredient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
+                android:orientation="vertical">
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Ingredients :"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="20sp"
-                    android:layout_weight="1"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:id="@+id/ad_tv_countItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="textEnd"
-                    android:layout_marginTop="15dp"
-                    android:text="5 items"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="20sp"
-                    android:layout_weight="2"
-                    android:textColor="@color/black"/>
-
-            </LinearLayout>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp">
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/ad_iv_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_background"/>
+                    <ImageButton
+                        android:id="@+id/ad_ib_bookmark"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_weight="1"
+                        android:src="@drawable/baseline_bookmark_border_24"
+                        android:elevation="1dp"
+                        android:background="@drawable/card_button_default"/>
+                </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/ingredientLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/ad_tv_source"
+                        android:drawableLeft="@drawable/baseline_fastfood_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text=" Chef Arnold"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="20sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"/>
+                    <ImageButton
+                        android:id="@+id/ad_ib_url"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/baseline_import_contacts_24"
+                        android:elevation="10dp"
+                        android:background="@drawable/card_button_default"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/ad_tv_cuisineType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mexico Food"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/ad_tv_dietLabels"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Low-Carb"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cook total time"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="15sp"
+                        android:layout_weight="3"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/ad_tv_totalTime"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text=": 7349 minute"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="15sp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total weight food"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="15sp"
+                        android:layout_weight="3"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/ad_tv_totalWeight"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text=": 7349 g"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="15sp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="Ingredients :"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textSize="20sp"
+                        android:layout_weight="1"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/ad_tv_countItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:layout_marginTop="15dp"
+                        tools:text="5 items"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="20sp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/ingredientLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Total Nutrient :"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:id="@+id/totalnutrient"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Total Nutrient :"
-                android:fontFamily="@font/poppins_bold"
-                android:textSize="20sp"
-                android:layout_weight="1"
-                android:textColor="@color/black"/>
-            <LinearLayout
-                android:id="@+id/totalnutrient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
             </LinearLayout>
 
+        </ScrollView>
 
-        </LinearLayout>
-
-    </ScrollView>
-
+    </LinearLayout>
 
 
-</LinearLayout>
+
+
+
+</RelativeLayout>

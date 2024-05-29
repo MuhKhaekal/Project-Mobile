@@ -1,5 +1,8 @@
 package com.example.makpakde.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.SearchView;
 
@@ -42,6 +47,9 @@ public class SearchFragment extends Fragment {
     SearchAdapter searchAdapter;
     SearchView fs_sv;
     RecyclerView fs_rv;
+    LinearLayout search_ll_connect;
+    LinearLayout search_ll_disconnect;
+    Button search_btn_load;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +64,37 @@ public class SearchFragment extends Fragment {
         fs_sv = view.findViewById(R.id.fs_sv);
         fs_rv = view.findViewById(R.id.fs_rv);
 
+        search_ll_connect = view.findViewById(R.id.search_ll_connect);
+        search_ll_disconnect = view.findViewById(R.id.search_ll_disconnect);
+        search_btn_load = view.findViewById(R.id.search_btn_load);
 
+        search_ll_disconnect.setVisibility(View.VISIBLE);
+        search_ll_connect.setVisibility(View.GONE);
+
+        if (isConnected()){
+            search_ll_disconnect.setVisibility(View.GONE);
+            search_ll_connect.setVisibility(View.VISIBLE);
+            firstCall();
+        } else {
+            search_ll_disconnect.setVisibility(View.VISIBLE);
+            search_ll_connect.setVisibility(View.GONE);
+        }
+
+        search_btn_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isConnected()) {
+                    search_ll_disconnect.setVisibility(View.GONE);
+                    search_ll_connect.setVisibility(View.VISIBLE);
+                    firstCall();
+                }
+            }
+        });
+
+
+    }
+
+    private void firstCall(){
         recipeList = new ArrayList<>();
         filteredList = new ArrayList<>();
 
@@ -77,7 +115,17 @@ public class SearchFragment extends Fragment {
                 return true;
             }
         });
+    }
 
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            if (activeNetwork != null) {
+                return activeNetwork.isConnected() || activeNetwork.isConnectedOrConnecting();
+            }
+        }
+        return false;
     }
     public void loadIngredientType(String query){
         ApiService apiService = RetrofitClient.getClient();

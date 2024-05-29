@@ -1,9 +1,14 @@
 package com.example.makpakde.Fragments;
 
+import static android.content.Context.CONNECTIVITY_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
+import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.makpakde.DetailActivity.APP_TYPE;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,6 +36,7 @@ import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
 import com.example.makpakde.Model.DatabaseHelper;
 import com.example.makpakde.R;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -71,6 +77,9 @@ public class HomeFragment extends Fragment {
     Button fh_btn_bread;
     Button fh_btn_octopus;
 
+    LinearLayout home_ll_connect;
+    LinearLayout home_ll_disconnect;
+    Button home_btn_load;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,6 +110,9 @@ public class HomeFragment extends Fragment {
         fh_btn_noodle = view.findViewById(R.id.fh_btn_noodle);
         fh_btn_bread = view.findViewById(R.id.fh_btn_bread);
         fh_btn_octopus = view.findViewById(R.id.fh_btn_octopus);
+        home_ll_connect = view.findViewById(R.id.home_ll_connect);
+        home_ll_disconnect = view.findViewById(R.id.home_ll_disconnect);
+        home_btn_load = view.findViewById(R.id.home_btn_load);
 
 
         fh_btn_chicken.setTag("chicken");
@@ -119,7 +131,47 @@ public class HomeFragment extends Fragment {
         fh_btn_bread.setTag("bread");
         fh_btn_octopus.setTag("octopus");
 
+        home_ll_disconnect.setVisibility(View.VISIBLE);
+        home_ll_connect.setVisibility(View.GONE);
 
+
+        if (isConnected()){
+            home_ll_disconnect.setVisibility(View.GONE);
+            home_ll_connect.setVisibility(View.VISIBLE);
+            firstCall();
+        } else {
+            home_ll_disconnect.setVisibility(View.VISIBLE);
+            home_ll_connect.setVisibility(View.GONE);
+        }
+
+        home_btn_load.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isConnected()) {
+                    home_ll_disconnect.setVisibility(View.GONE);
+                    home_ll_connect.setVisibility(View.VISIBLE);
+                    firstCall();
+                }
+            }
+        });
+
+
+
+
+    }
+
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+            if (activeNetwork != null) {
+                return activeNetwork.isConnected() || activeNetwork.isConnectedOrConnecting();
+            }
+        }
+        return false;
+    }
+
+    private void firstCall(){
         List<String> keyRandom = new ArrayList<>();
         keyRandom.add("savory");
         keyRandom.add("spicy");
@@ -156,7 +208,8 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<RecipeResponse> call, Throwable t) {
-                Log.e("Response", "Failed to fetch data. Error: " + t.getMessage());
+                home_ll_disconnect.setVisibility(View.VISIBLE);
+                home_ll_connect.setVisibility(View.GONE);
             }
         });
 
@@ -253,7 +306,6 @@ public class HomeFragment extends Fragment {
         fh_btn_noodle.setOnClickListener(buttonClickListener);
         fh_btn_bread.setOnClickListener(buttonClickListener);
         fh_btn_octopus.setOnClickListener(buttonClickListener);
-
     }
 
     private void resetButtonColors() {
@@ -308,7 +360,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         DatabaseHelper databaseHelper = new DatabaseHelper(getActivity());
-        SharedPreferences preferencesUsername = getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
+        SharedPreferences preferencesUsername =     getActivity().getSharedPreferences("preferencesUsername", MODE_PRIVATE);
         String usernameLogin = preferencesUsername.getString("usernameLogin", "");
         int userId = databaseHelper.getIdLoginUser(usernameLogin);
         loadRecipeRecent(userId);
