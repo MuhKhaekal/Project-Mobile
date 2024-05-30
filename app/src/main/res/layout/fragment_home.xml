@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".Fragments.HomeFragment">
+    tools:context=".Fragments.HomeFragment"
+    style="@style/Background">
 
 
     <LinearLayout
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Connection lost ..."
+            style="@style/TextColor"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginBottom="10dp"/>
         <Button
@@ -62,7 +64,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Find best recipe for cooking"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="30sp" />
 
         <TextView
@@ -70,7 +72,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Top recommendation 🔥"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -86,7 +88,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Ingredient type 🥚"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
 
@@ -104,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Chicken"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -114,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Beef"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -124,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Fish"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -134,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Tofu"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -144,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Vegatables"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -154,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Egg"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -164,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Shrimp"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -174,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Dairy"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -184,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Flour"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -194,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Fruits"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -204,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Seeds"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -214,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Sausage"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -224,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Noodle"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -234,7 +236,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Bread"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -244,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:text="Octopus"
                     android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
@@ -266,7 +268,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:text="Recent recipe 🔁"
-            android:textColor="@color/black"
+            style="@style/TextColor"
             android:textSize="20sp"
             android:layout_marginTop="10dp"/>
         <androidx.recyclerview.widget.RecyclerView

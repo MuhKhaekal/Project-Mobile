@@ -1,4 +1,4 @@
-package com.example.makpakde;
+package com.example.makpakde.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +14,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.makpakde.EdamamAPI.Recipe;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
+import com.example.makpakde.R;
 
 public class ConfirmPasswordActivity extends AppCompatActivity {
 
@@ -81,7 +78,7 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
         String password = confirm_et_password.getText().toString().trim();
         Boolean cek = databaseHelper.checkPassword(userId, password); // Gunakan password yang benar
         if (!cek && !password.isEmpty()){
-            Toast.makeText(ConfirmPasswordActivity.this, "Password tidak valid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ConfirmPasswordActivity.this, "Password invalid", Toast.LENGTH_SHORT).show();
         } else if (cek) {
             Intent toChangePasswordActivity = new Intent(ConfirmPasswordActivity.this, ChangePasswordActivity.class);
             startActivity(toChangePasswordActivity);

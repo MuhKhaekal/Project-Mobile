@@ -22,17 +22,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.makpakde.Adapter.BookmarkAdapter;
-import com.example.makpakde.ConfirmPasswordActivity;
+import com.example.makpakde.Activities.ConfirmPasswordActivity;
 import com.example.makpakde.EdamamAPI.ApiService;
-import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
-import com.example.makpakde.LoginActivity;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Activities.LoginActivity;
+import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
+import com.example.makpakde.Activities.ThemeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,7 +129,8 @@ public class ProfileFragment extends Fragment {
                         startActivity(toConfirmPassword);
                         break;
                     case 2:
-                        Toast.makeText(getActivity(), "Halaman 2 dipilih", Toast.LENGTH_SHORT).show();
+                        Intent toChangeTheme = new Intent(getActivity(), ThemeActivity.class);
+                        startActivity(toChangeTheme);
                         break;
                     case 3:
                         SharedPreferences sharedPreferences = getContext().getSharedPreferences("preferencesLogin", MODE_PRIVATE);

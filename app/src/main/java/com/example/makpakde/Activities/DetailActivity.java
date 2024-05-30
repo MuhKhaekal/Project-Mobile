@@ -1,9 +1,8 @@
-package com.example.makpakde;
-
-import static android.content.ContentValues.TAG;
+package com.example.makpakde.Activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -11,35 +10,33 @@ import android.os.Bundle;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.makpakde.EdamamAPI.ApiService;
-import com.example.makpakde.EdamamAPI.Ingredient;
-import com.example.makpakde.EdamamAPI.Nutrient;
-import com.example.makpakde.EdamamAPI.Recipe;
-import com.example.makpakde.EdamamAPI.RecipeResponse;
+import com.example.makpakde.Model.Ingredient;
+import com.example.makpakde.Model.Nutrient;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
-import com.example.makpakde.EdamamAPI.TotalNutrients;
+import com.example.makpakde.Model.TotalNutrients;
+import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -142,6 +139,11 @@ public class DetailActivity extends AppCompatActivity {
             });
 
         });
+        SharedPreferences preferencesTheme = getSharedPreferences("theme", MODE_PRIVATE);
+        Boolean dark_mode = preferencesTheme.getBoolean("darkmode", false);
+        if (dark_mode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
 
 

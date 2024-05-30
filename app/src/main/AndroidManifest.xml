@@ -16,25 +16,28 @@
         android:theme="@style/Theme.MakPakde"
         tools:targetApi="31">
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".Activities.ThemeActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfirmPasswordActivity"
+            android:name=".Activities.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailActivity"
+            android:name=".Activities.ConfirmPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".GetStartedActivity"
+            android:name=".Activities.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.GetStartedActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

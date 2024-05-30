@@ -1,6 +1,5 @@
-    package com.example.makpakde.Model;
+    package com.example.makpakde.Database;
 
-    import android.annotation.SuppressLint;
     import android.content.ContentValues;
     import android.content.Context;
     import android.database.Cursor;
@@ -8,14 +7,8 @@
     import android.database.sqlite.SQLiteOpenHelper;
 
     import androidx.annotation.Nullable;
-    import androidx.annotation.StringDef;
 
-    import com.example.makpakde.EdamamAPI.Recipe;
-
-    import java.util.ArrayList;
-    import java.util.Collections;
     import java.util.HashSet;
-    import java.util.List;
     import java.util.Set;
 
     public class DatabaseHelper extends SQLiteOpenHelper {

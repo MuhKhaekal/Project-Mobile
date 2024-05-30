@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailActivity"
-    android:orientation="vertical">
+    tools:context=".Activities.DetailActivity"
+    android:orientation="vertical"
+    style="@style/Background">
 
     <LinearLayout
         android:visibility="gone"
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Please Wait ..."
             android:fontFamily="@font/poppins_semibold"
+            style="@style/TextColor"
             android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
@@ -51,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Connection lost ..."
+            style="@style/TextColor"
             android:fontFamily="@font/poppins_semibold"
             android:layout_marginBottom="10dp"/>
         <Button
@@ -90,11 +93,11 @@
                 android:id="@+id/ad_tv_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/TextColor"
                 android:gravity="center_vertical"
                 tools:text="Makanan Enak"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="30dp"
-                android:textColor="@color/black"/>
+                android:textSize="30dp"/>
         </LinearLayout>
 
         <ScrollView
@@ -142,8 +145,8 @@
                         tools:text=" Chef Arnold"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="20sp"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"/>
+                        style="@style/TextColor"
+                        android:layout_weight="1"/>
                     <ImageButton
                         android:id="@+id/ad_ib_url"
                         android:layout_gravity="center_horizontal"
@@ -161,30 +164,29 @@
                     android:text="Mexico Food"
                     android:fontFamily="@font/poppins_semibold"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/black"/>
+                    style="@style/TextColor"/>
                 <TextView
                     android:id="@+id/ad_tv_dietLabels"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Low-Carb"
+                    style="@style/TextColor"
                     android:fontFamily="@font/poppins_semibold"
                     android:textSize="15sp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/black"/>
+                    android:layout_marginTop="10dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_gravity="center_vertical"
-
+                        style="@style/TextColor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Cook total time"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="15sp"
-                        android:layout_weight="3"
-                        android:textColor="@color/black"/>
+                        android:layout_weight="3"/>
                     <TextView
                         android:id="@+id/ad_tv_totalTime"
                         android:layout_gravity="center_vertical"
@@ -194,8 +196,8 @@
                         tools:text=": 7349 minute"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="15sp"
+                        style="@style/TextColor"
                         android:layout_weight="2"
-                        android:textColor="@color/black"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <LinearLayout
@@ -209,8 +211,8 @@
                         android:text="Total weight food"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="15sp"
-                        android:layout_weight="3"
-                        android:textColor="@color/black"/>
+                        style="@style/TextColor"
+                        android:layout_weight="3"/>
                     <TextView
                         android:id="@+id/ad_tv_totalWeight"
                         android:layout_gravity="center_vertical"
@@ -221,7 +223,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="15sp"
                         android:layout_weight="2"
-                        android:textColor="@color/black"
+                        style="@style/TextColor"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
 
@@ -237,7 +239,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="20sp"
                         android:layout_weight="1"
-                        android:textColor="@color/black"/>
+                        style="@style/TextColor"/>
                     <TextView
                         android:id="@+id/ad_tv_countItems"
                         android:layout_width="match_parent"
@@ -248,7 +250,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="20sp"
                         android:layout_weight="2"
-                        android:textColor="@color/black"/>
+                        style="@style/TextColor"/>
 
                 </LinearLayout>
 
@@ -276,7 +278,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="20sp"
                     android:layout_weight="1"
-                    android:textColor="@color/black"/>
+                    style="@style/TextColor"/>
                 <LinearLayout
                     android:id="@+id/totalnutrient"
                     android:layout_width="match_parent"

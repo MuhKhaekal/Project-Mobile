@@ -19,15 +19,11 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.SearchView;
 
-import com.example.makpakde.Adapter.IngredientTypeAdapter;
-import com.example.makpakde.Adapter.RecentRecipeAdapter;
 import com.example.makpakde.Adapter.SearchAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
-import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.EdamamAPI.RecipeResponse;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
-import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
-import com.example.makpakde.Model.DatabaseHelper;
 import com.example.makpakde.R;
 
 import java.util.ArrayList;

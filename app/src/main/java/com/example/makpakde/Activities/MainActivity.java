@@ -1,21 +1,19 @@
-package com.example.makpakde;
+package com.example.makpakde.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.makpakde.Fragments.BookmarkFragment;
 import com.example.makpakde.Fragments.HomeFragment;
 import com.example.makpakde.Fragments.ProfileFragment;
 import com.example.makpakde.Fragments.SearchFragment;
+import com.example.makpakde.R;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -94,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SharedPreferences preferencesTheme = getSharedPreferences("theme", MODE_PRIVATE);
+        Boolean dark_mode = preferencesTheme.getBoolean("darkmode", false);
+        if (dark_mode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
 
     }

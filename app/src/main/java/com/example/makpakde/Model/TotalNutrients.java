@@ -1,6 +1,5 @@
-package com.example.makpakde.EdamamAPI;
+package com.example.makpakde.Model;
 
-import com.example.makpakde.EdamamAPI.Nutrient;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

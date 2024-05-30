@@ -12,12 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.makpakde.DetailActivity;
-import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Activities.DetailActivity;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {

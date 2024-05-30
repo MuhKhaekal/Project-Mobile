@@ -1,4 +1,4 @@
-package com.example.makpakde;
+package com.example.makpakde.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +16,9 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.makpakde.EdamamAPI.Recipe;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
+import com.example.makpakde.R;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 

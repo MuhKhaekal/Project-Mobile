@@ -1,4 +1,4 @@
-package com.example.makpakde;
+package com.example.makpakde.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
+import com.example.makpakde.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -55,14 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirmPassword = signin_et_confirmPassword.getText().toString();
 
                 if (databaseHelper.checkUsername(username)){
-                    Toast.makeText(RegisterActivity.this, "Sudah ada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Username Already Exists", Toast.LENGTH_SHORT).show();
                 } else {
                     if (password.equalsIgnoreCase(confirmPassword)){
                         databaseHelper.insertDataUser(fullname,username,password);
                         Intent toLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(toLogin);
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Tidak valid", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Your confirm password is not match", Toast.LENGTH_SHORT).show();
                     }
                 }
 

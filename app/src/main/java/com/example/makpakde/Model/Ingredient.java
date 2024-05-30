@@ -1,4 +1,4 @@
-package com.example.makpakde.EdamamAPI;
+package com.example.makpakde.Model;
 
 import com.google.gson.annotations.SerializedName;
 

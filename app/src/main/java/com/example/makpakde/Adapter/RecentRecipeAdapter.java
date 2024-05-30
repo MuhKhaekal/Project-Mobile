@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.makpakde.DetailActivity;
-import com.example.makpakde.EdamamAPI.Recipe;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Activities.DetailActivity;
+import com.example.makpakde.Model.Recipe;
+import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
 
@@ -88,6 +89,7 @@ public class RecentRecipeAdapter extends RecyclerView.Adapter<RecentRecipeAdapte
                         Recipe clickedRecipe =recipeList.get(position);
                         int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.insertBookmarkRecipe(clickedRecipe.getUri(), userId);
+                        Toast.makeText(context, "Recipes added to bookmarks", Toast.LENGTH_SHORT).show();
 
                     }
                 }

@@ -1,9 +1,6 @@
 package com.example.makpakde.Fragments;
 
-import static android.content.Context.CONNECTIVITY_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
-import static androidx.core.content.ContextCompat.getSystemService;
-import static com.example.makpakde.DetailActivity.APP_TYPE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,22 +19,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.makpakde.Adapter.IngredientTypeAdapter;
 import com.example.makpakde.Adapter.RecentRecipeAdapter;
 import com.example.makpakde.Adapter.TopRecommendationAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
-import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.EdamamAPI.RecipeResponse;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
-import com.github.ybq.android.spinkit.SpinKitView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

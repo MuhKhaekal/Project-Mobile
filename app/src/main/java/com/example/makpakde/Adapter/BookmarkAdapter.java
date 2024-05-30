@@ -14,8 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.makpakde.EdamamAPI.Recipe;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Model.Recipe;
+import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
 import com.squareup.picasso.Picasso;
 
@@ -69,6 +69,8 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                         Recipe clickedRecipe =recipeList.get(position);
                         int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.deleteBookmark(clickedRecipe.getUri(), userId);
+                        recipeList.remove(position);
+                        notifyDataSetChanged();
 
                     }
                 }

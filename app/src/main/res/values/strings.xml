@@ -9,8 +9,9 @@
         <item>Change Password</item>
         <item>Change Theme</item>
         <item>Logout</item>
-        <!-- Tambahkan item lain jika diperlukan -->
+
     </string-array>
+
     <string name="title_activity_change_password">ChangePasswordActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

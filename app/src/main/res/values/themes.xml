@@ -6,4 +6,23 @@
     </style>
 
     <style name="Theme.MakPakde" parent="Base.Theme.MakPakde" />
+    
+    <style name="toast">
+        <item name="stTextColor">#FFFFFF</item>
+        <item name="stColorBackground">#3C3C3C</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">#fff</item>
+    </style>
+
+
+    <style name="Background">
+        <item name="android:background">@color/backgroundLight</item>
+    </style>
+    <style name="CardBackground">
+        <item name="android:background">@color/backgroundCardLight</item>
+    </style>
+    <style name="TextColor">
+        <item name="android:textColor">@color/textColorLight</item>
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.makpakde;
+package com.example.makpakde.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
+import com.example.makpakde.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent toMain = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(toMain);
                 } else {
-                    Toast.makeText(LoginActivity.this, "tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Username Not Found", Toast.LENGTH_SHORT).show();
                 }
 
             }

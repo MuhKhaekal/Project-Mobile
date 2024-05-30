@@ -16,10 +16,10 @@ import android.view.ViewGroup;
 
 import com.example.makpakde.Adapter.BookmarkAdapter;
 import com.example.makpakde.EdamamAPI.ApiService;
-import com.example.makpakde.EdamamAPI.Recipe;
+import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.EdamamAPI.RetrofitClient;
 import com.example.makpakde.EdamamAPI.SingleRecipeResponse;
-import com.example.makpakde.Model.DatabaseHelper;
+import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
 
 import java.util.ArrayList;

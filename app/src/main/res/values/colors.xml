@@ -3,9 +3,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+
     <color name="bg_et">#20FFFFFF</color>
+    <color name="hint_et">#80FFFFFF</color>
     <color name="primaryColor">#E23E3E</color>
     <color name="secondaryColor">#CDCDCD</color>
-    <color name="hint_et">#80FFFFFF</color>
 
+
+    <!--LIGHT THEME-->
+    <color name="textColorLight">#FF000000</color>
+    <color name="backgroundCardLight">#EAEAEA</color>
+    <color name="backgroundLight">#FFFFFFFF</color>
+    <!--DARK THEME-->
+    <color name="textColorDark">#FFFFFFFF</color>
+    <color name="backgroundCardDark">#1C1C1C</color>
+    <color name="backgroundDark">#131313</color>
 </resources>

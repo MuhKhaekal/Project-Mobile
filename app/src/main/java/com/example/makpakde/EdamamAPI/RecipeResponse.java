@@ -1,5 +1,6 @@
 package com.example.makpakde.EdamamAPI;
 
+import com.example.makpakde.Model.Recipe;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
