@@ -51,7 +51,6 @@ public class DetailActivity extends AppCompatActivity {
     ImageView ad_iv_back;
     TextView ad_tv_label;
     ImageView ad_iv_image;
-    ImageButton ad_ib_bookmark;
     TextView ad_tv_source;
     ImageView ad_ib_url;
     TextView ad_tv_cuisineType;
@@ -79,7 +78,6 @@ public class DetailActivity extends AppCompatActivity {
         ad_tv_label = findViewById(R.id.ad_tv_label);
         ad_iv_back = findViewById(R.id.ad_iv_back);
         ad_iv_image = findViewById(R.id.ad_iv_image);
-        ad_ib_bookmark = findViewById(R.id.ad_ib_bookmark);
         ad_tv_source = findViewById(R.id.ad_tv_source);
         ad_ib_url = findViewById(R.id.ad_ib_url);
         ad_tv_cuisineType = findViewById(R.id.ad_tv_cuisineType);
@@ -222,6 +220,7 @@ public class DetailActivity extends AppCompatActivity {
                             startActivity(toSource);
                         }
                     });
+
 
 
                     List<Ingredient> ingredients = recipeResponse.getIngredients();

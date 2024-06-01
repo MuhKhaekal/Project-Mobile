@@ -41,12 +41,22 @@ public class LoginActivity extends AppCompatActivity {
         login_btn_login = findViewById(R.id.login_btn_login);
         login_tv_toSignin = findViewById(R.id.login_tv_toSignin);
 
+        SharedPreferences preferencesLogin = getSharedPreferences("preferencesLogin", MODE_PRIVATE);
+        boolean checkLogin = preferencesLogin.getBoolean("checkLogin", false);
+
+        if (checkLogin){
+            Intent toMain = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(toMain);
+            finish();
+        }
+
         SharedPreferences preferences = getSharedPreferences("preferencesStart", MODE_PRIVATE);
         boolean checkStart = preferences.getBoolean("checkStart", false);
 
         if (!checkStart){
             Intent toStart = new Intent(LoginActivity.this, GetStartedActivity.class);
             startActivity(toStart);
+            finish();
         }
 
         login_btn_login.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
                     Intent toMain = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(toMain);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Username Not Found", Toast.LENGTH_SHORT).show();
                 }

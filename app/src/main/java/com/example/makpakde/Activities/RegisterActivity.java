@@ -55,19 +55,35 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = signin_et_password.getText().toString();
                 String confirmPassword = signin_et_confirmPassword.getText().toString();
 
-                if (databaseHelper.checkUsername(username)){
-                    Toast.makeText(RegisterActivity.this, "Username Already Exists", Toast.LENGTH_SHORT).show();
+                if (fullname.isEmpty() || username.isEmpty()){
+                    Toast.makeText(RegisterActivity.this, "Please enter the field", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (password.equalsIgnoreCase(confirmPassword)){
-                        databaseHelper.insertDataUser(fullname,username,password);
-                        Intent toLogin = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(toLogin);
+                    if (databaseHelper.checkUsername(username)){
+                        Toast.makeText(RegisterActivity.this, "Username Already Exists", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Your confirm password is not match", Toast.LENGTH_SHORT).show();
+                        if (password.equalsIgnoreCase(confirmPassword)){
+                            databaseHelper.insertDataUser(fullname,username,password);
+                            Intent toLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(toLogin);
+                            finish();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Your confirm password is not match", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 
 
+
+
+            }
+        });
+
+        signin_tv_toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(toLogin);
+                finish();
             }
         });
 

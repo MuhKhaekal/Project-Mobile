@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="Register"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="60sp"

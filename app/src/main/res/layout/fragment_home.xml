@@ -97,160 +97,176 @@
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:layout_marginBottom="10dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/fh_btn_chicken"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Chicken"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp" />
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Chicken"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_beef"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Beef"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Beef"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_fish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Fish"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Fish"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_tofu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Tofu"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Tofu"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_vegetables"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Vegatables"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Vegatables"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_egg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Egg"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Egg"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_shrimp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Shrimp"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Shrimp"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_dairy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Dairy"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Dairy"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_flour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Flour"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Flour"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_fruits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Fruits"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Fruits"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_seeds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Seeds"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Seeds"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_sausage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Sausage"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Sausage"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_noodle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Noodle"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Noodle"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_bread"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Bread"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Bread"
+                    android:textColor="@color/black" />
+
                 <Button
                     android:id="@+id/fh_btn_octopus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:textColor="@color/black"
-                    android:text="Octopus"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_marginEnd="10dp"
-                    android:elevation="10dp"/>
+                    android:backgroundTint="@color/secondaryColor"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Octopus"
+                    android:textColor="@color/black" />
 
 
             </LinearLayout>

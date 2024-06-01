@@ -37,7 +37,7 @@ public class SearchFragment extends Fragment {
     public static final String APP_TYPE = "public";
     private static final String APP_ID = "f22371a7";
     private static final String APP_KEY = "06294766abfa75c4602e3bd8c2b35875";
-    ApiService apiService;
+
     List<Recipe> recipeList;
     List<Recipe> filteredList;
     SearchAdapter searchAdapter;
@@ -134,9 +134,7 @@ public class SearchFragment extends Fragment {
                     for (RecipeResponse.Hit hit : hits){
                         recipeList.add(hit.getRecipe());
                     }
-//                    ingredientTypeAdapter = new IngredientTypeAdapter(ingredientList);
-//                    fh_rv_it.setAdapter(ingredientTypeAdapter);
-//                    ingredientTypeAdapter.notifyDataSetChanged();
+
                     filteredList.clear();
                     for (Recipe recipe : recipeList){
                         if (recipe.getLabel().toLowerCase().contains(query.toLowerCase())){

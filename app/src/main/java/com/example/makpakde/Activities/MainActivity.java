@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.makpakde.Fragments.BookmarkFragment;
 import com.example.makpakde.Fragments.HomeFragment;
 import com.example.makpakde.Fragments.ProfileFragment;
 import com.example.makpakde.Fragments.SearchFragment;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected final int person = 3;
     HomeFragment homeFragment;
     SearchFragment searchFragment;
-    BookmarkFragment bookmarkFragment;
+
     ProfileFragment profileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         searchFragment = new SearchFragment();
-        bookmarkFragment = new BookmarkFragment();
         profileFragment = new ProfileFragment();
 
 

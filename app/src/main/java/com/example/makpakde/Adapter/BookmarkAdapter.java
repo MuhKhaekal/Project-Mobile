@@ -3,6 +3,7 @@ package com.example.makpakde.Adapter;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.makpakde.Activities.DetailActivity;
 import com.example.makpakde.Model.Recipe;
 import com.example.makpakde.Database.DatabaseHelper;
 import com.example.makpakde.R;
@@ -55,6 +58,21 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
             li_bookmark_tv_label = itemView.findViewById(R.id.li_bookmark_tv_label);
             li_bookmark_ib_bookmark = itemView.findViewById(R.id.li_bookmark_ib_bookmark);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        Recipe clickedRecipe =recipeList.get(position);
+                        Context context = itemView.getContext();
+                        Intent toDetail = new Intent(context, DetailActivity.class);
+                        toDetail.putExtra("recipe", clickedRecipe.getUri());
+                        toDetail.putExtra("label", clickedRecipe.getLabel());
+                        context.startActivity(toDetail);
+                    }
+                }
+            });
+
             li_bookmark_ib_bookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,6 +87,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                         Recipe clickedRecipe =recipeList.get(position);
                         int userId = databaseHelper.getIdLoginUser(usernameLogin);
                         databaseHelper.deleteBookmark(clickedRecipe.getUri(), userId);
+                        Toast.makeText(context, "Recipes removed from bookmarks", Toast.LENGTH_SHORT).show();
                         recipeList.remove(position);
                         notifyDataSetChanged();
 

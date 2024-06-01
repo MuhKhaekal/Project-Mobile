@@ -47,6 +47,13 @@ public class ThemeActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
+        theme_ib_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         theme_sc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
