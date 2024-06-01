@@ -1,4 +1,4 @@
-MakPake (Masak Gak Pake Kode), kelihatan dari namanya sudah mencerminkan bahwa aplikasi ini berhubungan dengan makanan. MakPakde merupakan aplikasi resep yang menampilkan kurang lebih 400 recep makanan yang datanya diambil dari API EdamamApi. Tentunya memiliki fitur seperti :
+MakPake (Masak Gak Pake Kode), kelihatan dari namanya sudah mencerminkan bahwa aplikasi ini berhubungan dengan makanan. MakPakde merupakan aplikasi resep yang menampilkan kurang lebih 10.000 recep makanan yang datanya diambil dari API EdamamApi. Tentunya memiliki fitur seperti :
 - Autentikasi User menggunakan SQLite
 - Menampikan rekomendasi resep, yang setiap kali aplikasinya dibuka maka akan tampil rekomendasi yang berbeda
 - Filter yang berupa button untuk pencarian berdasarkan bahan makanannya
